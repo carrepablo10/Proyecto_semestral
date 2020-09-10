@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <div id="contenedor">
+        <div id="header">
+            <h1>Formulario De Resgistro de usuario</h1>
+        </div>
+        <div id="nav">
+            <nav>
+                <!-- ol (lista ordenada) ul (lista sin orden)-->
+                <ol>
+                    <li><a href="index.html"><img src="img/home.jpg"></a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="formulario.html">Formulario</a></li>
+                    <li><a href="quienes_somos.html">Quienes Somos</a></li>
+                    <li><a href="donde_estamos.html">Donde Estamos Ubicados</a></li>
+                </ol>
+            </nav>
+        </div>
+        <div id="contenido">
+            <div id="section">
+                <h1>Formulario de Registro</h1>
+                <script src="js/scripts.js"></script>
+                <script src="js/cliente.js"></script>
+                <script>
+                    var arreglo = new Array();
+                    var indice = 0;
+
+                    function grabar() {
+                        var rut = document.getElementById("txtRut").value;
+                        var nom = document.getElementById("txtNombre").value;
+                        var ed = document.getElementById("txtEdad").value;
+                        cli = new cliente();
+                        cli.setRut(rut);
+                        cli.setNombre(nom);
+                        cli.setEdad(ed);
+                        alert(cli.imprimir());
+                        arreglo[indice] = JSON.stringify(cli);
+                        indice++;
+                        localStorage.setItem("registros", arreglo);
+                        alert("guardo los datos");
+                    }
+                </script>
+                <form action="proceso.php" method="POST" onsubmit="return validarTodo()">
+                    <table border="1">
+                        <tr>
+                            <td>Rut:</td>
+                            <td>
+                                <input type="text" placeholder="ingrese rut Ej. 09125452-2" minlength="9" name="txtRut"
+                                    maxlength="10" id="txtRut" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nombre Completo:</td>
+                            <td>
+                                <input type="text" minlength="3" name="txtNombre" maxlength="80" id="txtNombre"
+                                    required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Edad:</td>
+                            <td>
+                                <input type="number" min="18" max="70" name="txtEdad" id="txtEdad" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fecha:</td>
+                            <td>
+                                <input type="date" name="txtFecha" id="txtFecha">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Correo:</td>
+                            <td>
+                                <input type="email" name="txtEmail" id="txtEmail" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td>
+                                <input type="password" minlength="2" maxlength="8" name="txtPass" id="txtPass" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Enviar">
+                                <input type="reset" value="Limpiar">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </form>
+                <button onclick="validarRut()">Validar Rut</button>
+                <button onclick="grabar()">Grabar Local Storage</button>
+            </div>
+            <div id="aside">Comentario</div>
+        </div>
+        <div id="footer">
+            <h1>Contacto</h1>
+            <ul>
+                <ol>
+                    <li>
+                        <h4>Email</h4>
+                        <div>desarrollodores@gmail.cl</div>
+                    </li>
+                    <li>
+                        <h4>Numero Teléfono</h4>
+                        <div>+5695438945</div>
+                    </li>
+
+                </ol>
+
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
